@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout.html"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+    <div layout:fragment="content">
+        <div class="row col-md-10">
+            <h2>List of Tasks </h2>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "tasks : ${tasks}">
+                <td th:text = "${tasks.id}"></td>
+                <td th:text = "${tasks.date}"></td>
+                <td th:text = "${tasks.description}"></td>
+                <td>
+<!--                    th:if="${#authentication.principal.email == tasks.user.email}"-->
+                    <a th:href="@{'/details/' + ${tasks.id}}" class="btn btn-info btn-sm" sec:authorize="isAuthenticated()">Details</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="container mt-3">
+            <h6 class="text-center">Copyright (C) 2023 All Rights Reserved</h6>
+        </div>
+    </div>
+
+</html>

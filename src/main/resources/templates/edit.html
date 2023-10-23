@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout.html">
+
+<div layout:fragment="content">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <form th:action="@{/save}" method="post">
+                <input type="hidden" name="task_id" th:value="${tasks.id}">
+                <div class="form-group">
+                    <label>Date: </label>
+                    <input type="date" class="form-control" name="task_date" th:value="${tasks!=null?tasks.date:''}">
+                </div>
+                <div class="form-group">
+                    <label>Description: </label>
+                    <input type="text" class="form-control" name="task_description" th:value="${tasks!=null?tasks.description:''}">
+                </div>
+                <div class="form-group mt-5">
+                    <button class="btn btn-success">SAVE</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger ml-2" data-bs-toggle="modal" data-bs-target="#deleteModal">DELETE</button>
+                </div>
+            </form>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form th:action="@{/delete}" method="post">
+                        <input type="hidden" name="task_id" th:value="${tasks.id}">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>Confirm</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-danger">Yes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

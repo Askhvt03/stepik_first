@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout.html"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <div class="form-group">
+                <label>ID: </label>
+                <input type="number" class="form-control plain-text"  th:value="${tasks!=null?tasks.id:'0'}">
+            </div>
+            <div class="form-group">
+                <label>Date: </label>
+                <input type="date" class="form-control plain-text"  th:value="${tasks!=null?tasks.date:''}">
+            </div>
+            <div class="form-group">
+                <label>Description: </label>
+                <input type="text" class="form-control plain-text"  th:value="${tasks!=null?tasks.description:''}">
+            </div>
+            <div class="form-group mt-5">
+                <a th:href="@{'/edit/' + ${tasks.id}}"  class="btn btn-success">Edit Task</a>
+                <!-- Button trigger modal -->
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</html>
